@@ -334,118 +334,122 @@
 				</imageContent>
 			</LightBox>
 			<Dialog
-					id="loginDialog"
-					title="Login"
-					class="sapUiResponsiveMargin">
+				id="loginDialog"
+				title="Login"
+				class="sapUiResponsiveMargin">
 				<content>
 					<f:SimpleForm
-							editable="false"
-							layout="ResponsiveGridLayout"
-							labelSpanXL="3"
-							labelSpanL="3"
-							labelSpanM="3"
-							labelSpanS="12"
-							adjustLabelSpan="false"
-							emptySpanXL="4"
-							emptySpanL="4"
-							emptySpanM="4"
-							emptySpanS="0"
-							columnsXL="1"
-							columnsL="1"
-							columnsM="1"
-							singleContainerFullSize="false">
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanXL="3"
+						labelSpanL="3"
+						labelSpanM="3"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="4"
+						emptySpanL="4"
+						emptySpanM="4"
+						emptySpanS="0"
+						columnsXL="1"
+						columnsL="1"
+						columnsM="1"
+						singleContainerFullSize="false">
 						<f:content>
 							<Label
-									class=""
-									text="Username"
-									labelFor="inputUsername"/>
+								class=""
+								text="Username"
+								labelFor="inputUsername"/>
 							<Input
-									id="inputUsername"
-									placeholder="Enter Username"/>
+								id="inputUsername"
+								placeholder="Enter Username"/>
 							<Label
-									text="Password"
-									labelFor="inputPassword"/>
+								text="Password"
+								labelFor="inputPassword"/>
 							<Input
-									id="inputPassword"
-									placeholder="Enter Password"/>
+								id="inputPassword"
+								placeholder="Enter Password"
+								type="Password"/>
 							<Link
-									text="Not registered yet? Create a new account!"
-									press="onRegistrationLinkPress"/>
+								text="Not registered yet? Create a new account!"
+								press="onRegistrationLinkPress"/>
 						</f:content>
 					</f:SimpleForm>
 				</content>
 				<buttons>
 					<button
-							text="Cancel"
-							type="Reject"
-							press="onLoginCancelButtonPress"/>
+						text="Cancel"
+						type="Reject"
+						press="onLoginCancelButtonPress"/>
 					<button
-							text="Submit"
-							press="onLoginSubmitButtonPress"
-							type="Accept"/>
+						text="Submit"
+						press="onLoginSubmitButtonPress"
+						type="Accept"/>
 				</buttons>
 			</Dialog>
 			<Dialog
-					id="createAccountDialog"
-					title="Create a New Account">
+				id="createAccountDialog"
+				title="Create a New Account">
 				<content>
 					<f:SimpleForm
-							editable="false"
-							layout="ResponsiveGridLayout"
-							labelSpanXL="3"
-							labelSpanL="3"
-							labelSpanM="3"
-							labelSpanS="12"
-							adjustLabelSpan="false"
-							emptySpanXL="4"
-							emptySpanL="4"
-							emptySpanM="4"
-							emptySpanS="0"
-							columnsXL="1"
-							columnsL="1"
-							columnsM="1"
-							singleContainerFullSize="false">
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanXL="3"
+						labelSpanL="3"
+						labelSpanM="3"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="4"
+						emptySpanL="4"
+						emptySpanM="4"
+						emptySpanS="0"
+						columnsXL="1"
+						columnsL="1"
+						columnsM="1"
+						singleContainerFullSize="false">
 						<f:content>
 							<Label
-									text="Username"
-									labelFor="inputCreateUsername"/>
+								text="Username"
+								labelFor="inputCreateUsername"/>
 							<Input
-									id="inputCreateUsername"
-									placeholder="Enter Username"
-									required="true"/>
+								id="inputCreateUsername"
+								placeholder="Enter Username"
+								required="true"/>
 							<Label
-									text="E-Mail"
-									labelFor="inputEmail"/>
+								text="E-Mail"
+								labelFor="inputEmail"/>
 							<Input
-									placeholder="Enter E-Mail"
-									id="inputEmail"
-									required="true"/>
+								placeholder="Enter E-Mail"
+								id="inputEmail"
+								required="true"
+								type="Email"/>
 							<Label
-									text="Password"
-									labelFor="inputCreatePassword"/>
+								text="Password"
+								labelFor="inputCreatePassword"/>
 							<Input
-									placeholder="Enter Password"
-									id="inputCreatePassword"
-									required="true"/>
+								placeholder="Enter Password"
+								id="inputCreatePassword"
+								required="true"
+								type="Password"/>
 							<Label
-									text="Repeat Password"
-									labelFor="inputConfirmPassword"/>
+								text="Repeat Password"
+								labelFor="inputConfirmPassword"/>
 							<Input
-									placeholder="Enter Password"
-									id="inputConfirmPassword"
-									required="true"/>
+								placeholder="Enter Password"
+								id="inputConfirmPassword"
+								required="true"
+								type="Password"/>
 						</f:content>
 					</f:SimpleForm>
 				</content>
 				<buttons>
 					<button
-							text="Cancel"
-							type="Reject"
-							press="onRegistrationCancelButtonPress"/>
+						text="Cancel"
+						type="Reject"
+						press="onRegistrationCancelButtonPress"/>
 					<button
-							text="Submit"
-							press="onRegistrationSubmitButtonPress"
-							type="Accept"/>
+						text="Submit"
+						press="onRegistrationSubmitButtonPress"
+						type="Accept"/>
 				</buttons>
 			</Dialog>
 		</dependents>
