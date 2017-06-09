@@ -14,10 +14,13 @@
 				visible="{device>/isPhone}"
 				tooltip="{i18n>toCartButtonTooltip}"
 				press="onCartButtonPress" />
-			<ToolbarSpacer />
+			<ToolbarSpacer/>
 			<Button
 				text="Switch Device"
 				press="onSwitchDeviceButtonPress" />
+			<Button
+				text="Login"
+				press="onOpenLoginDialog"/>
 		</headerContent>
 		<footer>
 			<Toolbar>
@@ -78,7 +81,6 @@
 					/>
 			</VBox>
 		</content>
-
 		<dependents>
 			<LightBox id="lightBox">
 				<imageContent>
@@ -87,6 +89,66 @@
 						title="{Name}"/>
 				</imageContent>
 			</LightBox>
+			<Dialog
+				id="loginDialog"
+				title="Login">
+				<content
+					class="sapUiSmallMargin">
+					<Label
+						text="Username"/>
+					<Input
+						placeholder="Enter Username"/>
+					<Label
+						text="Password"/>
+					<Input placeholder="Enter Password"/>
+					<Link
+						text="Not registered yet? Create a new account!"
+						press="onRegistrationLinkPress" />
+				</content>
+				<buttons>
+					<button
+						text="Cancel"
+						type="Reject"
+						press="onLoginCancelButtonPress"/>
+					<button
+						text="Submit"
+						press="onLoginSubmitButtonPress"
+						type="Accept"/>
+				</buttons>
+			</Dialog>
+			<Dialog
+				id="createAccountDialog"
+				title="Create a New Account">
+				<content
+						class="sapUiSmallMargin">
+					<Label
+						text="Username"/>
+					<Input
+						placeholder="Enter Username"/>
+					<Label
+						text="E-Mail"/>
+					<Input
+						placeholder="Enter E-Mail"/>
+					<Label
+						text="Password"/>
+					<Input
+						placeholder="Enter Password"/>
+					<Label
+						text="Repeat Password"/>
+					<Input
+						placeholder="Enter Password"/>
+				</content>
+				<buttons>
+					<button
+						text="Cancel"
+						type="Reject"
+						press="onRegistrationCancelButtonPress"/>
+					<button
+						text="Submit"
+						press="onRegistrationSubmitButtonPress"
+						type="Accept"/>
+				</buttons>
+			</Dialog>
 		</dependents>
 	</Page>
 </mvc:View>

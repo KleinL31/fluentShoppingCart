@@ -49,6 +49,13 @@ sap.ui.define(
 				return this.getOwnerComponent().getModel("i18n").getResourceBundle();
 			},
 
+			/**
+			 * Handler for Switch Device dialog.
+			 * Creates a URL with all session information: Current page and content of shopping cart.
+			 * This url his hidden behind a QR-Code generated via google API.
+			 * @public
+			 * @returns
+			 */
 			onSwitchDeviceButtonPress: function() {
 				var oCartModel = this.getView().getModel("cartProducts");
 
@@ -104,7 +111,32 @@ sap.ui.define(
 				this.getView().addDependent(qrDialog);
 
 				qrDialog.open();
-			}
+			},
+
+			/**
+			 * Event handler for login dialog
+			 */
+			onOpenLoginDialog: function () {
+				this.byId("loginDialog").open();
+			},
+			onLoginCancelButtonPress: function () {
+				this.byId("loginDialog").close();
+			},
+			onLoginSubmitButtonPress: function () {
+				this.byId("loginDialog").close();
+				MessageToast.show("You are now logged in!");
+			},
+			onRegistrationLinkPress: function () {
+				this.byId("loginDialog").close();
+				this.byId("createAccountDialog").open();
+			},
+			onRegistrationCancelButtonPress: function () {
+				this.byId("createAccountDialog").close();
+			},
+			onRegistrationSubmitButtonPress: function () {
+				this.byId("createAccountDialog").close();
+				MessageToast.show("Account was successfully created!");
+			},
 
 		});
 	});
