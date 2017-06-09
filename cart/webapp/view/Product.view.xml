@@ -18,7 +18,8 @@
 			<ToolbarSpacer/>
 			<Button
 				text="Switch Device"
-				press="onSwitchDeviceButtonPress" />
+				press="onSwitchDeviceButtonPress"
+				visible="{device>/isTouch}"/>
 			<Button
 				text="Login"
 				press="onOpenLoginDialog"/>
