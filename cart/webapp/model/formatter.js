@@ -1,4 +1,4 @@
-sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
+sap.ui.define(["sap/ui/core/format/NumberFormat"], function(NumberFormat) {
 	"use strict";
 
 	var mStatusState = {
@@ -13,7 +13,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 		 * @param {string} sValue model price value
 		 * @return {string} formatted price
 		 */
-		price: function (sValue) {
+		price: function(sValue) {
 			var numberFormat = NumberFormat.getFloatInstance({
 				maxFractionDigits: 2,
 				minFractionDigits: 2,
@@ -29,11 +29,11 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 		 * @param {object} oCartEntries current cart entries
 		 * @return {string} string with the total value
 		 */
-		totalPrice: function (oCartEntries) {
+		totalPrice: function(oCartEntries) {
 			var oBundle = this.getResourceBundle(),
 				fTotalPrice = 0;
 
-			Object.keys(oCartEntries).forEach(function (sProductId) {
+			Object.keys(oCartEntries).forEach(function(sProductId) {
 				var oProduct = oCartEntries[sProductId];
 				fTotalPrice += parseFloat(oProduct.Price) * oProduct.Quantity;
 			});
@@ -46,7 +46,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 		 * @param {string} sStatus product status
 		 * @return {string} the corresponding text if found or the original value
 		 */
-		statusText: function (sStatus) {
+		statusText: function(sStatus) {
 			var oBundle = this.getResourceBundle();
 
 			var mStatusText = {
@@ -63,7 +63,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 		 * @param {string} sStatus product status
 		 * @return {string} the state text
 		 */
-		statusState: function (sStatus) {
+		statusState: function(sStatus) {
 			return mStatusState[sStatus] || "None";
 		},
 
@@ -72,7 +72,12 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 		 * @param {string} sUrl image URL
 		 * @return {string} relative image URL
 		 */
-		pictureUrl: function (sUrl) {
+		pictureUrl: function(sUrl) {
+			if (sUrl && sUrl.includes("test-resources")) {
+				// for fluent we load the pictures from infra server
+				sUrl = sUrl.substring(sUrl.indexOf("/test-resources"));
+				return "http://veui5infra.dhcp.wdf.sap.corp:8080/sapui5-sdk-dist" + sUrl;
+			}
 			return jQuery.sap.getResourcePath("sap/ui/demo/cart/" + sUrl);
 		},
 
@@ -81,7 +86,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 		 * @param {object} oSavedForLaterEntries the entries in the cart
 		 * @return {string} "" for no products, the i18n text for >0 products
 		 */
-		footerTextForCart: function (oSavedForLaterEntries) {
+		footerTextForCart: function(oSavedForLaterEntries) {
 			var oBundle = this.getResourceBundle();
 
 			if (Object.keys(oSavedForLaterEntries).length === 0) {
@@ -96,7 +101,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 		 * @param {object} oCollection2 Second array or object to check
 		 * @return {boolean} true if one of the collections is not empty, otherwise - false.
 		 */
-		hasItems: function (oCollection1, oCollection2) {
+		hasItems: function(oCollection1, oCollection2) {
 			return !(jQuery.isEmptyObject(oCollection1) && jQuery.isEmptyObject(oCollection2));
 		}
 	};
