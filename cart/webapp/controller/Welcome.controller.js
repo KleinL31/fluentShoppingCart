@@ -4,23 +4,23 @@ sap.ui.define([
 	'sap/ui/model/json/JSONModel',
 	'sap/ui/model/Filter',
 	'sap/ui/demo/cart/model/formatter'
-], function (BaseController, cart, JSONModel, Filter, formatter) {
+], function(BaseController, cart, JSONModel, Filter, formatter) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.demo.cart.controller.Welcome", {
 
 		_iCarouselTimeout: 0, // a pointer to the current timeout
-		_iCarouselLoopTime : 8000, // loop to next picture after 8 seconds
+		_iCarouselLoopTime: 8000, // loop to next picture after 8 seconds
 
-		formatter : formatter,
+		formatter: formatter,
 
 		_mFilters: {
-				Promoted: [new Filter("Type", "EQ", "Promoted")],
-				Viewed: [new Filter("Type", "EQ", "Viewed")],
-				Favorite: [new Filter("Type", "EQ", "Favorite")]
-			},
+			Promoted: [new Filter("Type", "EQ", "Promoted")],
+			Viewed: [new Filter("Type", "EQ", "Viewed")],
+			Favorite: [new Filter("Type", "EQ", "Favorite")]
+		},
 
-		onInit: function () {
+		onInit: function() {
 			var oViewModel = new JSONModel({
 				welcomeCarouselShipping: 'img/ShopCarouselShipping.jpg',
 				welcomeCarouselInviteFriend: 'img/ShopCarouselInviteFriend.jpg',
@@ -34,6 +34,7 @@ sap.ui.define([
 			this.getView().setModel(oViewModel, "view");
 			this.getRouter().attachRouteMatched(this._onRouteMatched, this);
 			this.getRouter().getTarget("welcome").attachDisplay(this._onRouteMatched, this);
+			this.getRouter().getRoute("home").attachPatternMatched(this._loadCardFromUrl, this);
 
 			// select random carousel page at start
 			var oWelcomeCarousel = this.byId("welcomeCarousel");
@@ -48,19 +49,49 @@ sap.ui.define([
 			this.onCarouselPageChanged();
 		},
 
-		_onRouteMatched: function (oEvent) {
+		_loadCardFromUrl: function(oEvent) {
+			var oRouterArgs = oEvent.getParameter("arguments");
+			if (oRouterArgs["?query"]) {
+				var oModel = this.getView().getModel();
+
+				oModel.read("/Products", {
+					success: function(oData) {
+						var aProducts = oRouterArgs["?query"].products.split(",");
+						var aQuantities = oRouterArgs["?query"].quantities.split(",");
+						var sNavTarget = oRouterArgs["?query"].navTarget;
+
+						var oResourceBundle = this.getModel("i18n").getResourceBundle();
+						var oCartModel = this.getModel("cartProducts");
+
+						for (var id in aProducts) {
+							for (var product in oModel.oData) {
+								if (product.includes("Products('") && oModel.oData[product].ProductId === aProducts[id]) {
+									for (var i = 0; i < aQuantities[id]; i++) {
+										cart.addToCart(oResourceBundle, oModel.oData[product], oCartModel);
+									}
+								}
+							}
+						}
+						// restore old hash
+						sap.ui.core.routing.HashChanger.getInstance().setHash(sNavTarget);
+					}.bind(this)
+				});
+			}
+		},
+
+		_onRouteMatched: function(oEvent) {
 			// we do not need to call this function if the url hash refers to product or cart product
 			if (oEvent.getParameter("name") !== "product" && oEvent.getParameter("name") !== "cartProduct") {
 				var aPromotedData = this.getView().getModel("view").getProperty("/Promoted");
 				if (!aPromotedData.length) {
 					var oModel = this.getModel();
-					Object.keys(this._mFilters).forEach(function (sFilterKey) {
+					Object.keys(this._mFilters).forEach(function(sFilterKey) {
 						oModel.read("/FeaturedProducts", {
 							urlParameters: {
 								"$expand": "Product"
 							},
 							filters: this._mFilters[sFilterKey],
-							success: function (oData) {
+							success: function(oData) {
 								this.getModel("view").setProperty("/" + sFilterKey, oData.results);
 								if (sFilterKey === "Promoted") {
 									this._selectPromotedItems();
@@ -77,7 +108,7 @@ sap.ui.define([
 		 */
 		onCarouselPageChanged: function() {
 			clearTimeout(this._iCarouselTimeout);
-			this._iCarouselTimeout = setTimeout(function () {
+			this._iCarouselTimeout = setTimeout(function() {
 				var oWelcomeCarousel = this.byId("welcomeCarousel");
 				if (oWelcomeCarousel) {
 					oWelcomeCarousel.next();
@@ -87,10 +118,10 @@ sap.ui.define([
 		},
 
 		/**
-		* Event handler to determine which link the user has clicked
-		* @param {sap.ui.base.Event} oEvent the press event of the link
-		*/
-		onSelectProduct: function (oEvent) {
+		 * Event handler to determine which link the user has clicked
+		 * @param {sap.ui.base.Event} oEvent the press event of the link
+		 */
+		onSelectProduct: function(oEvent) {
 			var oContext = oEvent.getSource().getBindingContext("view");
 			var sCategoryId = oContext.getProperty("Product/Category");
 			var sProductId = oContext.getProperty("Product/ProductId");
@@ -103,7 +134,7 @@ sap.ui.define([
 		/**
 		 * Navigates to the category page on phones
 		 */
-		onShowCategories: function () {
+		onShowCategories: function() {
 			this.getRouter().navTo("categories");
 		},
 
@@ -111,17 +142,19 @@ sap.ui.define([
 		 * Opens a lightbox when clicking on the picture
 		 * @param {sap.ui.base.Event} oEvent the press event of the image
 		 */
-		onPicturePress: function (oEvent) {
+		onPicturePress: function(oEvent) {
 			var sPath = "view>" + oEvent.getSource().getBindingContext("view").getPath() + "/Product";
-			this.byId("lightBox").bindElement({path: sPath});
+			this.byId("lightBox").bindElement({
+				path: sPath
+			});
 			this.byId("lightBox").open();
 		},
 
 		/**
-		* Event handler to determine which button was clicked
-		* @param {sap.ui.base.Event} oEvent the button press event
-		*/
-		onAddButtonPress: function (oEvent) {
+		 * Event handler to determine which button was clicked
+		 * @param {sap.ui.base.Event} oEvent the button press event
+		 */
+		onAddButtonPress: function(oEvent) {
 			var oResourceBundle = this.getModel("i18n").getResourceBundle();
 			var oProduct = oEvent.getSource().getBindingContext("view").getObject();
 			var oCartModel = this.getModel("cartProducts");
@@ -132,7 +165,7 @@ sap.ui.define([
 		 * Select two random elements from the promoted array
 		 * @private
 		 */
-		_selectPromotedItems: function () {
+		_selectPromotedItems: function() {
 			var aPromotedItems = this.getView().getModel("view").getProperty("/Promoted");
 			var aSelectedPromoted = [];
 			for (var i = 0; i < 2; i++) {

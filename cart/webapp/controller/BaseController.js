@@ -1,6 +1,7 @@
 sap.ui.define(
-	["sap/ui/core/mvc/Controller"],
-	function (Controller) {
+	["sap/ui/core/mvc/Controller",
+	'sap/m/MessageBox'],
+	function (Controller, MessageBox) {
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.cart.controller.BaseController", {
@@ -42,6 +43,41 @@ sap.ui.define(
 		 */
 		getResourceBundle: function () {
 			return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+		},
+		
+		onSwitchDeviceButtonPress: function(){
+			var oCartModel = this.getView().getModel("cartProducts");
+
+			//all relevant cart properties are set back to default. Content is deleted.
+			var cartEntries = oCartModel.getProperty("/cartEntries");
+			var aProducts = [];
+			var aQuantities = [];
+
+			for (var entry in cartEntries){
+				if (!cartEntries.hasOwnProperty(entry)) {
+					continue;
+				}
+				aProducts.push(cartEntries[entry]["ProductId"]);
+				aQuantities.push(cartEntries[entry]["Quantity"]);
+			}
+			
+			var currentHash = sap.ui.core.routing.HashChanger.getInstance().getHash();
+			
+			// we add all products, all quanitites and the current hash to the url
+			// refer to WelcomeController._loadCardFromUrl for resolvement
+			var oParameters = { 
+				"query" : {
+					"products":aProducts.join(","),
+					"quantities":aQuantities.join(","),
+					"navTarget":encodeURIComponent(currentHash)
+				}
+			};
+			
+			var sUrl = window.location.origin + 
+					window.location.pathname + 
+					"#/" + 
+					this.getRouter().getURL("home", oParameters);
+			MessageBox.show("URL: " + sUrl);
 		}
 
 	});

@@ -28,8 +28,8 @@ sap.ui.define([
 				this._STORAGE_KEY = sStorageKey;
 			}
 
-			// load data from local storage
-			this._loadData();
+			// do not load data from local storage for fluent prototype
+			//this._loadData();
 
 			return this;
 		},

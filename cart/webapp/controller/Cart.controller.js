@@ -46,7 +46,7 @@ sap.ui.define([
 				this._orderBusyDialog.destroy();
 			}
 		},
-
+		
 		_routePatternMatched: function () {
 			// show welcome page if cart is loaded from URL
 			var oHistory = History.getInstance();
@@ -233,5 +233,7 @@ sap.ui.define([
 				this._oRouter.getTargets().display("welcome");
 			}
 		}
+		
+		
 	});
 });
