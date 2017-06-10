@@ -29,6 +29,11 @@ sap.ui.define([
 				Promoted: [],
 				Viewed: [],
 				Favorite: [],
+				carouselItem1: [],
+				carouselItem2: [],
+				carouselItem3: [],
+				carouselItem4: [],
+				carouselItem5: [],
 				Currency: "EUR"
 			});
 			this.getView().setModel(oViewModel, "view");
@@ -85,6 +90,7 @@ sap.ui.define([
 				var aPromotedData = this.getView().getModel("view").getProperty("/Promoted");
 				if (!aPromotedData.length) {
 					var oModel = this.getModel();
+					this.iCount = 1;
 					Object.keys(this._mFilters).forEach(function(sFilterKey) {
 						oModel.read("/FeaturedProducts", {
 							urlParameters: {
@@ -93,7 +99,10 @@ sap.ui.define([
 							filters: this._mFilters[sFilterKey],
 							success: function(oData) {
 								this.getModel("view").setProperty("/" + sFilterKey, oData.results);
-								if (sFilterKey === "Promoted") {
+								if (sap.ui.Device.system.phone && sFilterKey === "Promoted" && this.iCount > 0) {
+									this._selectCarouselItems();
+									this.iCount --;
+								} else if (!sap.ui.Device.system.phone && sFilterKey === "Promoted") {
 									this._selectPromotedItems();
 								}
 							}.bind(this)
@@ -173,6 +182,49 @@ sap.ui.define([
 				aSelectedPromoted.push(oSelectedPromoted);
 			}
 			this.getModel("view").setProperty("/Promoted", aSelectedPromoted);
+		},
+
+		_selectCarouselItems: function () {
+
+			var aSelectedCarouselItems1 = [],
+				aSelectedCarouselItems2 = [],
+				aSelectedCarouselItems3 = [],
+				aSelectedCarouselItems4 = [],
+				aSelectedCarouselItems5 = [],
+				aSelectedCarouselItems = [];
+			/*for (var i=1; i<=5; i++) {
+			 debugger;
+			 var aCarouselItems = this.getView().getModel("view").getProperty("/Promoted");
+			 var oSelectedPromoted = aCarouselItems.pop();
+			 aSelectedCarouselItems.push(oSelectedPromoted);
+			 this.getModel("view").setProperty("/carouselItem"+i, aSelectedCarouselItems);
+			 aSelectedCarouselItems.pop();
+			 }*/
+
+			var aCarouselItems1 = this.getView().getModel("view").getProperty("/Promoted");
+			var oSelectedPromoted1 = aCarouselItems1.pop();
+			aSelectedCarouselItems1.push(oSelectedPromoted1);
+			this.getModel("view").setProperty("/carouselItem1", aSelectedCarouselItems1);
+
+			var aCarouselItems2 = this.getView().getModel("view").getProperty("/Promoted");
+			var oSelectedPromoted2 = aCarouselItems1.pop();
+			aSelectedCarouselItems2.push(oSelectedPromoted2);
+			this.getModel("view").setProperty("/carouselItem2", aSelectedCarouselItems2);
+
+			var aCarouselItems3 = this.getView().getModel("view").getProperty("/Promoted");
+			var oSelectedPromoted3 = aCarouselItems3.pop();
+			aSelectedCarouselItems3.push(oSelectedPromoted3);
+			this.getModel("view").setProperty("/carouselItem3", aSelectedCarouselItems3);
+
+			var aCarouselItems4 = this.getView().getModel("view").getProperty("/Promoted");
+			var oSelectedPromoted4 = aCarouselItems4.pop();
+			aSelectedCarouselItems4.push(oSelectedPromoted4);
+			this.getModel("view").setProperty("/carouselItem4", aSelectedCarouselItems4);
+
+			var aCarouselItems5 = this.getView().getModel("view").getProperty("/Promoted");
+			var oSelectedPromoted5 = aCarouselItems5.pop();
+			aSelectedCarouselItems5.push(oSelectedPromoted5);
+			this.getModel("view").setProperty("/carouselItem5", aSelectedCarouselItems5);
 		}
 	});
 });
