@@ -191,7 +191,9 @@ sap.ui.define([
 				aSelectedCarouselItems3 = [],
 				aSelectedCarouselItems4 = [],
 				aSelectedCarouselItems5 = [],
-				aSelectedCarouselItems = [];
+				aCarouselItems = [],
+				oSelectedPromoted;
+
 			/*for (var i=1; i<=5; i++) {
 			 debugger;
 			 var aCarouselItems = this.getView().getModel("view").getProperty("/Promoted");
@@ -201,29 +203,26 @@ sap.ui.define([
 			 aSelectedCarouselItems.pop();
 			 }*/
 
-			var aCarouselItems1 = this.getView().getModel("view").getProperty("/Promoted");
-			var oSelectedPromoted1 = aCarouselItems1.pop();
-			aSelectedCarouselItems1.push(oSelectedPromoted1);
+			aCarouselItems = this.getView().getModel("view").getProperty("/Promoted");
+
+			oSelectedPromoted = aCarouselItems.pop();
+			aSelectedCarouselItems1.push(oSelectedPromoted);
 			this.getModel("view").setProperty("/carouselItem1", aSelectedCarouselItems1);
 
-			var aCarouselItems2 = this.getView().getModel("view").getProperty("/Promoted");
-			var oSelectedPromoted2 = aCarouselItems2.pop();
-			aSelectedCarouselItems2.push(oSelectedPromoted2);
+			oSelectedPromoted = aCarouselItems.pop();
+			aSelectedCarouselItems2.push(oSelectedPromoted);
 			this.getModel("view").setProperty("/carouselItem2", aSelectedCarouselItems2);
 
-			var aCarouselItems3 = this.getView().getModel("view").getProperty("/Promoted");
-			var oSelectedPromoted3 = aCarouselItems3.pop();
-			aSelectedCarouselItems3.push(oSelectedPromoted3);
+			oSelectedPromoted = aCarouselItems.pop();
+			aSelectedCarouselItems3.push(oSelectedPromoted);
 			this.getModel("view").setProperty("/carouselItem3", aSelectedCarouselItems3);
 
-			var aCarouselItems4 = this.getView().getModel("view").getProperty("/Promoted");
-			var oSelectedPromoted4 = aCarouselItems4.pop();
-			aSelectedCarouselItems4.push(oSelectedPromoted4);
+			oSelectedPromoted = aCarouselItems.pop();
+			aSelectedCarouselItems4.push(oSelectedPromoted);
 			this.getModel("view").setProperty("/carouselItem4", aSelectedCarouselItems4);
 
-			var aCarouselItems5 = this.getView().getModel("view").getProperty("/Promoted");
-			var oSelectedPromoted5 = aCarouselItems5.pop();
-			aSelectedCarouselItems5.push(oSelectedPromoted5);
+			oSelectedPromoted = aCarouselItems.pop();
+			aSelectedCarouselItems5.push(oSelectedPromoted);
 			this.getModel("view").setProperty("/carouselItem5", aSelectedCarouselItems5);
 		}
 	});
