@@ -207,7 +207,7 @@ sap.ui.define([
 			this.getModel("view").setProperty("/carouselItem1", aSelectedCarouselItems1);
 
 			var aCarouselItems2 = this.getView().getModel("view").getProperty("/Promoted");
-			var oSelectedPromoted2 = aCarouselItems1.pop();
+			var oSelectedPromoted2 = aCarouselItems2.pop();
 			aSelectedCarouselItems2.push(oSelectedPromoted2);
 			this.getModel("view").setProperty("/carouselItem2", aSelectedCarouselItems2);
 
