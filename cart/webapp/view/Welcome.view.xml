@@ -98,7 +98,7 @@
 					id="productsCarousel"
 					loop="true"
 					showPageIndicator="false"
-					visible="{device>/isPhone}"
+					visible="{device>/isNotDesktop}"
 					width="100%">
 				<pages>
 
@@ -481,11 +481,11 @@
 				text="{i18n>promotedTitle}"
 				titleStyle="H2"
 				class="sapUiSmallMargin"
-				visible="{= ${device>/isPhone}!==true }"/>
+				visible="{device>/isDesktop}"/>
 
 			<l:BlockLayout
 				background="Dashboard"
-				visible="{= ${device>/isPhone}!==true }">
+				visible="{device>/isDesktop}">
 				<l:BlockLayoutRow
 					id="promotedRow"
 					content="{view>/Promoted}">
@@ -562,11 +562,11 @@
 				text="{i18n>viewedTitle}"
 				titleStyle="H2"
 				class="sapUiSmallMargin"
-				visible="{= ${device>/isPhone}!==true }"/>
+				visible="{device>/isDesktop}"/>
 
 			<l:BlockLayout
 				background="Dashboard"
-				visible="{= ${device>/isPhone}!==true }">
+				visible="{device>/isDesktop}">
 				<l:BlockLayoutRow
 					id="viewedRow"
 					content="{view>/Viewed}">
@@ -641,11 +641,11 @@
 				text="{i18n>favoritTitle}"
 				titleStyle="H2"
 				class="sapUiSmallMargin"
-				visible="{= ${device>/isPhone}!==true }"/>
+				visible="{device>/isDesktop}"/>
 
 			<l:BlockLayout
 				background="Dashboard"
-				visible="{= ${device>/isPhone}!==true }">
+				visible="{device>/isDesktop}">
 				<l:BlockLayoutRow
 					id="favoriteRow"
 					content="{view>/Favorite}">

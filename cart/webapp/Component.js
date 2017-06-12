@@ -30,6 +30,8 @@ sap.ui.define([
 				isNoTouch: !sap.ui.Device.support.touch,
 				isPhone: sap.ui.Device.system.phone,
 				isNoPhone: !sap.ui.Device.system.phone,
+				isNotDesktop: !sap.ui.Device.system.desktop,
+				isDesktop: sap.ui.Device.system.desktop,
 				listMode: (sap.ui.Device.system.phone) ? "None" : "SingleSelectMaster",
 				listItemType: (sap.ui.Device.system.phone) ? "Active" : "Inactive"
 			});

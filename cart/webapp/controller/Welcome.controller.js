@@ -99,10 +99,10 @@ sap.ui.define([
 							filters: this._mFilters[sFilterKey],
 							success: function(oData) {
 								this.getModel("view").setProperty("/" + sFilterKey, oData.results);
-								if (sap.ui.Device.system.phone && sFilterKey === "Promoted" && this.iCount > 0) {
+								if (!sap.ui.Device.system.desktop && sFilterKey === "Promoted" && this.iCount > 0) {
 									this._selectCarouselItems();
 									this.iCount --;
-								} else if (!sap.ui.Device.system.phone && sFilterKey === "Promoted") {
+								} else {
 									this._selectPromotedItems();
 								}
 							}.bind(this)
