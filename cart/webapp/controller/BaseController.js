@@ -1,11 +1,11 @@
 sap.ui.define(
 	["sap/ui/core/mvc/Controller",
-		'sap/m/MessageBox',
+		'sap/m/MessageToast',
 		'sap/m/Dialog',
 		'sap/m/Image',
 		'sap/m/Button'
 	],
-	function(Controller, MessageBox, Dialog, Image, Button) {
+	function(Controller, MessageToast, Dialog, Image, Button) {
 		"use strict";
 
 		return Controller.extend("sap.ui.demo.cart.controller.BaseController", {
@@ -96,9 +96,54 @@ sap.ui.define(
 				// opening the dialog
 				var qrDialog = new Dialog({
 					title: 'Switch Device',
-					content: new Image({
-						src: qrUrl
-					}),
+					content: new sap.m.VBox(
+						"VBox" ,
+						{
+							alignItems : sap.m.FlexAlignItems.Center,
+							justifyContent: sap.m.FlexJustifyContent.Center,
+							items: [
+								new Button({
+									text: 'Copy URL to clipboard',
+									width: "220px",
+									press: function () {
+										var $temp = $("<input>");
+										try {
+											$("body").append($temp);
+											$temp.val(sUrl).select();
+											document.execCommand("copy");
+											$temp.remove();
+											MessageToast.show("copied to clipboard");
+										} catch (oException) {
+											MessageToast.show("error while copying to clipboard");
+										}
+									}.bind(this)
+								}),
+								new sap.m.Text("textBlank1",{text: " "}),
+								new sap.m.Text("textOr1",{text: "to mobile device"}),
+								new Image({src: qrUrl}),
+								new sap.m.Text("textOr2",{text: "to all devices"}),
+								new sap.m.Text("textBlank2",{text: " "}),
+								new sap.m.Input(
+									"emailaddress",
+									{
+										width: "220px",
+										placeholder : "Enter email address"
+									}
+								),
+								new Button({
+									text: '     send email     ',
+									width: "220px",
+									press: function () {
+										var address=sap.ui.getCore().byId("emailaddress").getValue();
+										$(location).attr('href', 'mailto:'
+											+ address
+											+ '?subject=Switch%20Device'
+											+ "&body="
+											+ sEncodedUrl)
+									}.bind(this)
+								})
+							]
+						}),
 					beginButton: new Button({
 						text: 'Close',
 						press: function() {
@@ -106,7 +151,6 @@ sap.ui.define(
 						}.bind(this)
 					})
 				});
-
 				//to get access to the global model
 				this.getView().addDependent(qrDialog);
 
@@ -123,8 +167,12 @@ sap.ui.define(
 				this.byId("loginDialog").close();
 			},
 			onLoginSubmitButtonPress: function () {
+				var user=this.byId("inputUsername").getValue();
 				this.byId("loginDialog").close();
-				MessageToast.show("You are now logged in!");
+				MessageToast.show("Hello, "+user+ ". You are now logged in!");
+				var oUserModel = this.getView().getModel("user");
+				oUserModel.setProperty("/username", user);
+				oUserModel.setProperty("/isAuthenticated", true);
 			},
 			onRegistrationLinkPress: function () {
 				this.byId("loginDialog").close();
@@ -136,7 +184,7 @@ sap.ui.define(
 			onRegistrationSubmitButtonPress: function () {
 				this.byId("createAccountDialog").close();
 				MessageToast.show("Account was successfully created!");
-			},
+			}
 
 		});
 	});
