@@ -134,11 +134,11 @@
 					</f:SimpleForm>
 				</content>
 				<buttons>
-					<button
+					<Button
 						text="Cancel"
 						type="Reject"
 						press="onLoginCancelButtonPress"/>
-					<button
+					<Button
 						text="Submit"
 						press="onLoginSubmitButtonPress"
 						type="Accept"/>
@@ -200,11 +200,11 @@
 					</f:SimpleForm>
 				</content>
 				<buttons>
-					<button
+					<Button
 						text="Cancel"
 						type="Reject"
 						press="onRegistrationCancelButtonPress"/>
-					<button
+					<Button
 						text="Submit"
 						press="onRegistrationSubmitButtonPress"
 						type="Accept"/>

@@ -38,6 +38,13 @@ sap.ui.define([
 			oDeviceModel.setDefaultBindingMode("OneWay");
 			this.setModel(oDeviceModel, "device");
 
+			//create and set user model
+			var oUserModel = new JSONModel({
+				username: "",
+				isAuthenticated: false
+			});
+			this.setModel(oUserModel, "user");
+
 			this.getRouter().initialize();
 			this._oRouter = this.getRouter();
 		},

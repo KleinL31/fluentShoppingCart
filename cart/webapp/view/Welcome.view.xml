@@ -20,9 +20,14 @@
 					text="Switch Device"
 					press="onSwitchDeviceButtonPress"
 					visible="{device>/isTouch}"/>
+
 				<Button
 					text="Login"
-					press="onOpenLoginDialog"/>
+					press="onOpenLoginDialog"
+					visible="{=!${user>/isAuthenticated}}"/>
+				<Button
+					icon="sap-icon://customer"
+					visible="{=${user>/isAuthenticated}}"/>
 			</Toolbar>
 		</customHeader>
 		<content>
@@ -771,11 +776,11 @@
 					</f:SimpleForm>
 				</content>
 				<buttons>
-					<button
+					<Button
 						text="Cancel"
 						type="Reject"
 						press="onLoginCancelButtonPress"/>
-					<button
+					<Button
 						text="Submit"
 						press="onLoginSubmitButtonPress"
 						type="Accept"/>
@@ -837,11 +842,11 @@
 					</f:SimpleForm>
 				</content>
 				<buttons>
-					<button
+					<Button
 						text="Cancel"
 						type="Reject"
 						press="onRegistrationCancelButtonPress"/>
-					<button
+					<Button
 						text="Submit"
 						press="onRegistrationSubmitButtonPress"
 						type="Accept"/>
