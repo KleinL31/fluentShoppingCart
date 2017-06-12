@@ -3,8 +3,9 @@ sap.ui.define([
 	'sap/ui/demo/cart/model/cart',
 	'sap/ui/model/json/JSONModel',
 	'sap/ui/model/Filter',
-	'sap/ui/demo/cart/model/formatter'
-], function(BaseController, cart, JSONModel, Filter, formatter) {
+	'sap/ui/demo/cart/model/formatter',
+	'sap/ui/Device'
+], function(BaseController, cart, JSONModel, Filter, formatter, oDevice) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.demo.cart.controller.Welcome", {
@@ -45,6 +46,15 @@ sap.ui.define([
 			var oWelcomeCarousel = this.byId("welcomeCarousel");
 			var iRandomIndex = Math.floor(Math.random() * oWelcomeCarousel.getPages().length - 1);
 			oWelcomeCarousel.setActivePage(oWelcomeCarousel.getPages()[iRandomIndex]);
+		},
+
+		onBeforeRendering: function () {
+			if (oDevice.system.tablet) {
+				for (var i=1; i<=5; i++) {
+					this.byId("image" + i).setProperty("width", "50%");
+					this.byId("blockLayout" + i).addStyleClass("blockLayoutContentTablets");
+				}
+			}
 		},
 
 		/**

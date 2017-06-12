@@ -32,3 +32,16 @@ html:not(.sapUiTheme-sap_hcb):not(.sapUiTheme-sap_hcw) .sapUiDemoCart .welcomeTe
 	width: 100%;
 	text-shadow: 0 0 0.125rem #000000;
 }
+
+.blockLayoutContentPhones {
+	margin-top: 23px;
+}
+
+.blockLayoutContentTablets {
+	margin-top: 10px;
+}
+
+.imagesOnTablets {
+	width: 50%;
+	height: 50%;
+}
