@@ -54,6 +54,7 @@ sap.ui.define([
 					this.byId("image" + i).setProperty("width", "50%");
 					this.byId("blockLayout" + i).addStyleClass("blockLayoutContentTablets");
 				}
+				this.getView().setProperty("width", "86.5%");
 			}
 		},
 

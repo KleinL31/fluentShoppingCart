@@ -9,7 +9,7 @@
 		id="page"
 		showHeader="true"
 		class="customBackground"
-		enableScrolling="false">
+		enableScrolling="{device>/isDesktop}">
 		<customHeader>
 			<Toolbar>
 				<Button
