@@ -74,9 +74,8 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function(NumberFormat) {
 		 */
 		pictureUrl: function(sUrl) {
 			if (sUrl && sUrl.includes("test-resources")) {
-				// for fluent we load the pictures from infra server
 				sUrl = sUrl.substring(sUrl.indexOf("/test-resources"));
-				return "http://veui5infra.dhcp.wdf.sap.corp:8080/sapui5-sdk-dist" + sUrl;
+				return "https://sapui5.hana.ondemand.com/" + sUrl;
 			}
 			return jQuery.sap.getResourcePath("sap/ui/demo/cart/" + sUrl);
 		},

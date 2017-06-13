@@ -21,7 +21,6 @@
 					text="Switch Device"
 					press="onSwitchDeviceButtonPress"
 					visible="{device>/isTouch}"/>
-
 				<Button
 					text="Login"
 					press="onOpenLoginDialog"
@@ -95,11 +94,11 @@
 					</l:BlockLayoutCell>
 				</l:BlockLayoutRow>
 			</l:BlockLayout>
-
-			<Title tooltip="{i18n>welcomeDescription}" text="{i18n>welcomeHeadline}" class="welcomeText"/>
-
+			<Title
+				tooltip="{i18n>welcomeDescription}"
+				text="{i18n>welcomeHeadline}"
+				class="welcomeText"/>
 			<!-- welcome page on phone devices -->
-
 			<Carousel
 				id="productsCarousel"
 				loop="true"
@@ -179,7 +178,6 @@
 							</l:content>
 						</l:BlockLayoutRow>
 					</l:BlockLayout>
-
 					<l:BlockLayout
 						id="blockLayout2"
 						background="Dashboard"
@@ -231,7 +229,6 @@
 												<l:GridData span="XL4 L4 M4 S4" />
 											</layoutData>
 										</Button>
-
 										<ObjectListItem
 											class="welcomePrice"
 											number="{
@@ -252,7 +249,6 @@
 							</l:content>
 						</l:BlockLayoutRow>
 					</l:BlockLayout>
-
 					<l:BlockLayout
 						id="blockLayout3"
 						background="Dashboard"
@@ -304,7 +300,6 @@
 												<l:GridData span="XL4 L4 M4 S4" />
 											</layoutData>
 										</Button>
-
 										<ObjectListItem
 											class="welcomePrice"
 											number="{
@@ -325,7 +320,6 @@
 							</l:content>
 						</l:BlockLayoutRow>
 					</l:BlockLayout>
-
 					<l:BlockLayout
 						id="blockLayout4"
 						background="Dashboard"
@@ -377,7 +371,6 @@
 												<l:GridData span="XL4 L4 M4 S4" />
 											</layoutData>
 										</Button>
-
 										<ObjectListItem
 											class="welcomePrice"
 											number="{
@@ -398,7 +391,6 @@
 							</l:content>
 						</l:BlockLayoutRow>
 					</l:BlockLayout>
-
 					<l:BlockLayout
 						id="blockLayout5"
 						background="Dashboard"
@@ -450,7 +442,6 @@
 												<l:GridData span="XL4 L4 M4 S4" />
 											</layoutData>
 										</Button>
-
 										<ObjectListItem
 											class="welcomePrice"
 											number="{
@@ -473,15 +464,12 @@
 					</l:BlockLayout>
 				</pages>
 			</Carousel>
-
 			<!-- welcome page on desktop devices -->
-
 			<Title
 				text="{i18n>promotedTitle}"
 				titleStyle="H2"
 				class="sapUiSmallMargin"
 				visible="{device>/isDesktop}"/>
-
 			<l:BlockLayout
 				background="Dashboard"
 				visible="{device>/isDesktop}">
@@ -535,7 +523,6 @@
 										<l:GridData span="XL4 L4 M4 S4" />
 									</layoutData>
 								</Button>
-
 								<ObjectListItem
 									class="welcomePrice"
 									number="{
@@ -556,13 +543,11 @@
 					</l:content>
 				</l:BlockLayoutRow>
 			</l:BlockLayout>
-
 			<Title
 				text="{i18n>viewedTitle}"
 				titleStyle="H2"
 				class="sapUiSmallMargin"
 				visible="{device>/isDesktop}"/>
-
 			<l:BlockLayout
 				background="Dashboard"
 				visible="{device>/isDesktop}">
@@ -637,17 +622,16 @@
 				</l:BlockLayoutRow>
 			</l:BlockLayout>
 			<Title
-				text="{i18n>favoritTitle}"
+				text="{i18n>favouriteTitle}"
 				titleStyle="H2"
 				class="sapUiSmallMargin"
 				visible="{device>/isDesktop}"/>
-
 			<l:BlockLayout
 				background="Dashboard"
 				visible="{device>/isDesktop}">
 				<l:BlockLayoutRow
 					id="favoriteRow"
-					content="{view>/Favorite}">
+					content="{view>/Favourite}">
 					<l:content>
 						<l:BlockLayoutCell class="sapUiContentPadding">
 							<l:Grid
