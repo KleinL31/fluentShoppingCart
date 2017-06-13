@@ -120,7 +120,7 @@ sap.ui.define(
 								}),
 								new sap.m.Text("textBlank1",{text: " "}),
 								new sap.m.Text("textOr1",{text: "to mobile device"}),
-								new Image({src: qrUrl}),
+								new sap.m.Image("qrcode", { src: qrUrl, width : "100%" }),
 								new sap.m.Text("textOr2",{text: "to all devices"}),
 								new sap.m.Text("textBlank2",{text: " "}),
 								new sap.m.Input(
@@ -146,8 +146,9 @@ sap.ui.define(
 						}),
 					beginButton: new Button({
 						text: 'Close',
-						press: function() {
+						press: function(oEvent) {
 							qrDialog.close();
+							qrDialog.destroy();
 						}.bind(this)
 					})
 				});
