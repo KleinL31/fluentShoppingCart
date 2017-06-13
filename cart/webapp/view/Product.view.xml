@@ -8,7 +8,8 @@
 		id="page"
 		title="{Name}"
 		showNavButton="{device>/isPhone}"
-		navButtonPress="onNavButtonPress" >
+		navButtonPress="onNavButtonPress"
+		enableScrolling="{device>/isDesktop}">
 		<headerContent>
 			<Button
 				icon="sap-icon://cart"
@@ -35,12 +36,14 @@
 		</footer>
 		<content>
 			<ObjectHeader
+				id="oBjectHeaderProductId"
 				title="{Name}"
 				number="{
 					path : 'Price',
 					formatter : '.formatter.price'
 				}"
-				numberUnit="EUR">
+				numberUnit="EUR"
+				class="oBjectHeaderOnPhonesandTablets">
 				<attributes>
 					<ObjectAttribute
 						title="{i18n>productSupplierAttributeText}"
@@ -68,6 +71,7 @@
 				</statuses>
 			</ObjectHeader>
 			<VBox
+				id="productBox"
 				alignItems="Center"
 				renderType="Div">
 					<Image

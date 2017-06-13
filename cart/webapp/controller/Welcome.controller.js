@@ -51,10 +51,10 @@ sap.ui.define([
 		onBeforeRendering: function () {
 			if (oDevice.system.tablet) {
 				for (var i=1; i<=5; i++) {
-					this.byId("image" + i).setProperty("width", "50%");
+					this.byId("image" + i).setProperty("width", "40%");
 					this.byId("blockLayout" + i).addStyleClass("blockLayoutContentTablets");
 				}
-				this.getView().setProperty("width", "86.5%");
+				this.byId("productsCarousel").setProperty("height", "410px");
 			}
 		},
 
@@ -113,7 +113,7 @@ sap.ui.define([
 								if (!sap.ui.Device.system.desktop && sFilterKey === "Promoted" && this.iCount > 0) {
 									this._selectCarouselItems();
 									this.iCount --;
-								} else {
+								} else if (sap.ui.Device.system.desktop && sFilterKey === "Promoted") {
 									this._selectPromotedItems();
 								}
 							}.bind(this)

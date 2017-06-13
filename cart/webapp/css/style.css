@@ -41,7 +41,7 @@ html:not(.sapUiTheme-sap_hcb):not(.sapUiTheme-sap_hcw) .sapUiDemoCart .welcomeTe
 	margin-top: 10px;
 }
 
-.imagesOnTablets {
-	width: 50%;
-	height: 50%;
+.productBoxContent {
+	text-align: center;
 }
+

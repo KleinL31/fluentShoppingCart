@@ -3,9 +3,10 @@ sap.ui.define([
 	'sap/ui/demo/cart/controller/BaseController',
 	'sap/ui/demo/cart/model/formatter',
 	'sap/ui/demo/cart/model/cart',
+	'sap/ui/Device',
 	'sap/m/MessageToast',
 	'sap/m/MessageBox'
-], function ($, BaseController, formatter, cart) {
+], function ($, BaseController, formatter, cart, oDevice) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.demo.cart.controller.Product", {
@@ -21,6 +22,14 @@ sap.ui.define([
 			// register for events
 			var oBus = sap.ui.getCore().getEventBus();
 			oBus.subscribe("shoppingCart", "updateProduct", this.fnUpdateProduct, this);
+		},
+
+		onBeforeRendering: function () {
+			if (!oDevice.system.desktop) {
+				//this.byId("oBjectHeaderProductId").addStyleClass("oBjectHeaderOnPhonesandTablets");
+				this.byId("productImage").setProperty("width", "75%");
+				this.byId("productBox").addStyleClass("productBoxContent");
+			}
 		},
 
 		_routePatternMatched: function(oEvent) {

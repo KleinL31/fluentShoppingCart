@@ -631,7 +631,7 @@
 				visible="{device>/isDesktop}">
 				<l:BlockLayoutRow
 					id="favoriteRow"
-					content="{view>/Favourite}">
+					content="{view>/Favorite}">
 					<l:content>
 						<l:BlockLayoutCell class="sapUiContentPadding">
 							<l:Grid
